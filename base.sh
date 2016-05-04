@@ -21,8 +21,6 @@ echo_supervisord_conf > /etc/supervisord.conf
 echo "[include]" >> /etc/supervisord.conf
 echo "files = /etc/supervisord.d/*.conf" >> /etc/supervisord.conf
 
-wget -O /etc/rc.d/init.d/supervisord  https://raw.githubusercontent.com/Supervisor/initscripts/master/centos-systemd-etcs
-chmod +x /etc/rc.d/init.d/supervisord
-chkconfig --add supervisord
-chkconfig supervisord on
-service supervisord start
+wget -O /usr/lib/systemd/system/supervisord.service  https://raw.githubusercontent.com/Supervisor/initscripts/master/centos-systemd-etcs
+systemctl enable supervisord
+systemctl start supervisord
