@@ -1,6 +1,6 @@
 #!/bin/bash
 setenforce 0
-yum install -y gcc clang python-devel
+yum install -y gcc clang python-devel git
 touch /etc/yum.repos.d/mongodb-org-3.2.repo
 echo "[mongodb-org-3.2]" >> /etc/yum.repos.d/mongodb-org-3.2.repo
 echo "name=MongoDB Repository" >> /etc/yum.repos.d/mongodb-org-3.2.repo
@@ -11,6 +11,9 @@ echo "gpgkey=https://www.mongodb.org/static/pgp/server-3.2.asc" >> /etc/yum.repo
 yum -y install mongodb-org
 service mongod start
 chkconfig mongod on
+
+rm /etc/yum.repos.d/mongodb-org-3.2.repo
+yum clean packages
 
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
